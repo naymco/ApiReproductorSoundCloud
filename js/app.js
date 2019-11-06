@@ -12,9 +12,10 @@ function reproducirPista(pistaActual) {
     audio.src = ` ${pistaActual.id}?client_id=${claveId}`;
     audio.autoplay = true;
 
-    while (listadoBusqueda.hasChildNodes()) {
+
+    /* while (listadoBusqueda.hasChildNodes()) {
         listadoBusqueda.removeChild(listadoBusqueda.firstChild)
-    }
+    } */
     let copiaPista = pistaActual.cloneNode(true)
     listadoBusqueda.appendChild(copiaPista);
 }
@@ -34,7 +35,7 @@ function buscarCantante(cantante) {
             return response.json() // retorna la información de la api de soundcloud en formato json
         })
         .then(function (json) { // creo un objeto dentro de una array que contendrá la información que necesito del json anterior
-            //console.log(json);
+            console.log(json);
 
             while (listadoBusqueda.hasChildNodes()) {
                 listadoBusqueda.removeChild(listadoBusqueda.firstChild)
@@ -52,7 +53,7 @@ function buscarCantante(cantante) {
                     <p class="idArtista"></p>
                     <img src="${datosArtista.imagen}" class="imagen-disco">
                     <h3 class="nombre-cantante"> ${datosArtista.nombre}</h3>
-                    <p class="nombre-cancion">${datosArtista.pistas}</p>
+                    <p class="nombre-cancion">Nº de pistas: ${datosArtista.pistas}</p>
                 </div>
             `;
                 listadoBusqueda.insertAdjacentHTML('beforeend', infoArtistHTML)
@@ -61,7 +62,6 @@ function buscarCantante(cantante) {
 
 
         })
-
         .then(function () {
             const caratulaDisco = document.querySelectorAll('.caratula-disco');
             for (let e = 0; e < caratulaDisco.length; e++) {
@@ -71,76 +71,116 @@ function buscarCantante(cantante) {
                     subirCanciones(artista);
                 })
             }
-        })
+        });
 
     function subirCanciones(selecCantante) {
-        console.log(selecCantante)
         fetch(`https://api.soundcloud.com/users/${selecCantante}/tracks/?client_id=${claveId}&limit=100`)
             .then(function (response) {
                 return response.json()
-
             })
             .then(function (json) {
                 console.log(json)
-            })
 
-        while (listadoBusqueda.hasChildNodes()) {
-            listadoBusqueda.removeChild(listadoBusqueda.firstChild)
-        }
-        if (json.length === 0) {
-            console.log('failure')
-            let errorCabecera =
-                `<h3 id="failHeading">Oops! Unfortunately, the artist you selected does not provide any free tracks for streaming. Please search again.</h3>
-            `
-
-            listadoBusqueda.insertAdjacentHTML('beforeend', errorCabecera)
-        } else {
-            console.log('success')
-            cabeceraPista = `
-            <div class="barra-ordenada">
-            <h3 class="titulo-ordenado">Resultados ordenados alfabéticamente</h3>
-            </div>
+                while (listadoBusqueda.hasChildNodes()) {
+                    listadoBusqueda.removeChild(listadoBusqueda.firstChild)
+                }
+                if (json.length === 0) { // condicion para verificar que el disco contiene canciones
+                    console.log('failure');
+                    let errorCabecera =
+                        `<h3 id="failHeading">Oops! Unfortunately, the artist you selected does not provide any free tracks for streaming. Please search again.</h3>
             `;
-            listadoBusqueda.insertAdjacentHTML('beforeend', cabeceraPista);
-
-
-            let DatosArtista = []
-            for (let g = 0; g < json.length; g++) {
-                var infoPista = {}
-
-                infoPista.id = json[g].stram_url
-                infoPista.imagen = json[g].artwork_url
-                infoPista.title = json[g].title
-                infoPista.artist = json[g].user.username
-                DatosArtista.push(infoPista)
-            }
-
-            DatosArtista.sort((x, y) => {
-                a = x.title.toUpperCase()
-                b = y.title.toUpperCase()
-
-                if (a > b) {
-                    return 1
+                    listadoBusqueda.insertAdjacentHTML('beforeend', errorCabecera)
                 } else {
-                    if (a < b) {
-                        return -1
+                    console.log('success')
+                    cabeceraPista = `
+                    <div class="barra-ordenada">
+                         <h3 class="titulo-ordenado"></h3>
+                    </div>
+                    `;
+                    listadoBusqueda.insertAdjacentHTML('beforeend', cabeceraPista);
+
+
+                    let DatosArtista = []
+                    for (let g = 0; g < json.length; g++) {
+                        var infoPista = {}
+
+                        infoPista.id = json[g].stream_url
+                        infoPista.imagen = json[g].artwork_url
+                        infoPista.title = json[g].title
+                        infoPista.artist = json[g].user.username
+                        DatosArtista.push(infoPista)
                     }
-                    return 0;
+
+                    DatosArtista.sort((x, y) => {
+                        a = x.title.toUpperCase()
+                        b = y.title.toUpperCase()
+
+                        if (a > b) {
+                            return 1
+                        } else {
+                            if (a < b) {
+                                return -1
+                            }
+                            return 0;
+                        }
+                    });
+                    console.log(DatosArtista)
+                    for (let m = 0; m < DatosArtista.length; m++) {
+                        let pistaHTML = `
+                        <div class="pista" id="${DatosArtista[m].id}" draggable="true" ondragstart="drag(event)" onclick="reproducirPista(this)">
+                            <img class="imagen-pista" src="${DatosArtista[m].imagen}" alt="No funciona la imagen">
+                            <div class="titulo-descripcion">
+                                <p class="titulo-pista">${DatosArtista[m].title}</p>
+                                <p class="artista-pista">${DatosArtista[m].artist}</p>
+                            </div>
+                        </div>
+                 `;
+
+                        listadoBusqueda.insertAdjacentHTML('beforeend', pistaHTML)
+
+
+
+
+
+
+                    }
+                    /* for (let p = 0; p < 1; p++) {
+                        let soloPistaHTML = `
+                        <div class="solo-pista" id="${DatosArtista[p].id}" draggable="true" ondragstart="drag(event)" onclick="reproducirPista(this)">
+                            <img class="solo-imagen-pista" src="${DatosArtista[p].imagen}" alt="No funciona la imagen">
+                            <div class="titulo-descripcion">
+                                <p class="titulo-pista">${DatosArtista[p].title}</p>
+                                <p class="artista-pista">${DatosArtista[p].artist}</p>
+                            </div>
+                        </div>
+                        `;
+                        const barraLateral = document.getElementById('listado-relacionado-barra-lateral')
+                        barraLateral.insertAdjacentHTML('beforeend', soloPistaHTML)
+                    } */
+
                 }
             });
-            console.log(DatosArtista)
-            for (let m = 0; m < infoPista.length; m++) {
-                let pistaHTML = `
-                 <div class="pista" id="${infoPista[m].id}" onclick="reproducirPista(this)">
-                 <img src="${infoPista[m].imagen}" alt="No funciona la imagen">
-                 <p class="titulo-pista">${infoPista[m].title}</p>
-                 <p class="artista-pista">${infoPista[m].artist}</p>
-                 </div>
-                 `;
-                listadoBusqueda.insertAdjacentHTML('beforeend', pistaHTML)
-            }
-
-
-        }
     }
+}
+
+function drag(ev) {
+    ev.dataTransfer.setData("text", ev.target.id);
+
+}
+
+function drop(ev) {
+    ev.preventDefault();
+    let data = ev.dataTransfer.getData("text");
+    let dataDnD = ev.target.appendChild(document.getElementById(data));
+    dataDnD.cloneNode(true);
+    ev.dataTransfer.clearData();
+    /* let pistaArrastrar = document.getElementsByClassName('drag-and-drop-remove');
+    while (pistaArrastrar.hasChildNodes()) {
+        pistaArrastrar.removeChild(pistaArrastrar.firstChild)
+    } */
+
+}
+
+function dragOver(ev) {
+    ev.preventDefault();
 }

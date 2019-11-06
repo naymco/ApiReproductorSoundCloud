@@ -1,103 +1,144 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat:200,400,700&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Liu+Jian+Mao+Cao&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Montserrat:200,400,700&display=swap");
 
 * {
-    margin: 0;
+  margin: 0;
 }
 
 body {
-    background: #141E30;
-    background: -webkit-linear-gradient(to right, #243B55, #141E30);
-    background: linear-gradient(to right, #243B55, #141E30);
-    color: white;
+  background: #141e30;
+  background: -webkit-linear-gradient(to right, #243b55, #141e30);
+  background: linear-gradient(to right, #243b55, #141e30);
+  color: white;
+  width: 100%;
 }
 
 nav {
-    background: #d7d7d7;
-    width: 100%;
-    height: 70px;
-    display: flex;
-    align-items: center;
-    border-bottom: #e9e9e9;
+  background: #d7d7d7;
+  width: 100%;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  border-bottom: #e9e9e9;
+  position: fixed;
+  top: 0;
+  left: 0;
+  transition: 0.5s;
 }
-
+.black {
+  /* height: 40px;
+  z-index: 99;
+  background: none;
+  opacity: 0.8;
+  margin-top: 10px; */
+  display: none;
+}
 .contenedor-buscador {
-    margin-left: auto;
-    margin-right: auto;
-
+  margin-left: auto;
+  margin-right: auto;
+  background: #d7d7d7;
+  padding: 10px 20px;
+  border-radius: 50px;
 }
 
 #input-busqueda {
-    background: none;
-    border: none;
-    border-bottom: 2px solid rgb(146, 146, 146);
-    width: 300px;
-    height: 30px;
-    padding: 5px;
-
+  background: none;
+  border: none;
+  border-bottom: 2px solid rgb(146, 146, 146);
+  width: 300px;
+  height: 30px;
+  padding: 5px;
 }
 
 #boton-buscador {
-    border-radius: 5px;
-    height: auto;
-    width: auto;
-    background: white;
-    border: 2px solid rgb(167, 167, 167);
-    padding: 10px 25px;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 15px;
-    font-weight: 700;
-    color: rgb(167, 167, 167);
-    transition: .5s;
-    cursor: pointer;
+  border-radius: 50px;
+  background: white;
+  border: 2px solid rgb(167, 167, 167);
+  padding: 10px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: rgb(167, 167, 167);
+  transition: 0.5s;
+  cursor: pointer;
 }
 
 #boton-buscador:hover {
-    /* border: 2px solid #243B55; */
-    color: #243B55;
+  /* border: 2px solid #243B55; */
+  color: #243b55;
+}
+
+.contenedor-principal {
+  display: flex;
+  width: 100%;
+}
+
+#listado-relacionado-barra-lateral {
+  background: #f1f3f4;
+  transition: 0.8s;
+  width: 30%;
+  text-align: center;
+  padding: 20px 0;
+  margin: 0;
+}
+
+.fixed {
+  position: fixed;
+  height: 100vh;
+  bottom: 0;
+  right: 0;
 }
 
 #listado-busqueda {
-    display: flex;
-    width: 90%;
-    flex-wrap: wrap;
-    margin-left: auto;
-    margin-right: auto;
-    padding-bottom: 80px;
+  display: flex;
+  width: 69%;
+  flex-wrap: wrap;
+  margin-top: 30px;
+  padding-bottom: 80px;
 }
 
-
 #cabecera-caratula {
-    background: url(../img/music-3507317_1920.jpg);
-    background-position: top center;
-    background-size: cover;
-    width: 100%;
-    height: 600px;
-    display: flex;
-    align-items: center;
-
+  background: url(../img/music-3507317_1920.jpg);
+  background-position: top center;
+  background-size: cover;
+  width: 100%;
+  height: 600px;
+  display: flex;
+  align-items: center;
 }
 
 .titulo {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 200;
-    font-size: 50px;
-    margin: auto;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 200;
+  font-size: 50px;
+  margin: auto;
 }
 
 .caratula-disco {
-    transition: .5s;
-    padding: 20px;
+  transition: 0.5s;
+  padding: 10px;
+  margin: 10px;
+  background: #d7d7d7;
+  border-radius: 5px;
+  color: #141e30;
+  width: 13%;
+  text-align: center;
+  border: 1px solid white;
+  cursor: pointer;
+}
+
+.caratula-disco img {
+  border-radius: 5px;
+  object-fit: cover;
 }
 
 .caratula-disco h3 {
-    font-family: 'Montserrat'sans-serif;
-    font-weight: 400;
-    font-size: 15px;
-
+  font-family: "Montserrat" sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  padding: 5px;
 }
 
-footer {
+/* footer {
     width: 100%;
     height: 50px;
     background: #f1f3f4;
@@ -106,13 +147,68 @@ footer {
     left: 0;
     display: flex;
     transition: .8s;
-}
+} */
 
 .reproductor {
-    margin-left: auto;
+  margin-left: auto;
+  padding-top: 30px;
 }
 
 .reproductor-musica {
-    padding: 0 30px;
+  padding: 0 30px;
+  margin-top: 20px;
+}
 
+.drag-and-drop-remove {
+  background: #141e30;
+  width: 100%;
+  height: 100px;
+}
+
+.pista {
+  background: #c4c4c4;
+  border-radius: 5px;
+  padding: 10px;
+  border: 1px solid white;
+  display: flex;
+  width: 80%;
+  height: auto;
+  color: #141e30;
+  box-shadow: 1px 1px 3px 3px;
+  cursor: pointer;
+  margin: 10px auto;
+}
+
+.imagen-pista {
+  /* width: 200px; */
+  /* height: auto; */
+  border-radius: 5px;
+}
+
+.titulo-pista {
+  font-family: "Montserrat" sans-serif;
+  font-size: 20px;
+  padding: 10px;
+}
+
+.artista-pista {
+  font-family: "Montserrat" sans-serif;
+  font-size: 18px;
+  padding: 10px;
+}
+
+.solo-pista {
+  padding: 10px;
+  background: #d7d7d7;
+  border-radius: 10px;
+  border: 1px solid #c4c4c4;
+  margin: 10px;
+  display: flex;
+  box-shadow: 1px 1px 3px 3px #141e30;
+  color: #141e30;
+}
+
+.nombre-cantante {
+  font-family: "Montserrat" sans-serif;
+  font-weight: 400;
 }

@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    $("footer").css("display", "none");
+
 
 
     const efectoScrollSuave = $('.btn-buscar');
@@ -10,6 +10,45 @@ $(document).ready(function () {
         $("html,body").animate({
             scrollTop: $(anclaListado).offset().top
         }, 1000);
-        $("footer").css("display", "block").animate(1000);
-    })
-})
+
+    });
+
+
+    var $sidebar = $('.barra-lateral'),
+        $content = $('.contenedor-principal');
+
+    //Since our CSS is going to monkey with the height as you scroll, I need to know the initial height.
+    let sidebarHeight = $sidebar.height();
+
+    if ($sidebar.length > 0 && $content.length > 0) {
+        let $window = $(window),
+            offset = $sidebar.offset();
+
+        $window.scroll(function () {
+
+            if ($content.height() > sidebarHeight) {
+                let new_margin = $window.scrollTop() - offset.top;
+                if ($window.scrollTop() > offset.top) {
+                    $sidebar.addClass("fixed");
+                    $sidebar.scrollTop(new_margin);
+                } else {
+                    $sidebar.removeClass("fixed");
+                }
+            }
+        });
+    }
+    const navBar = $('nav');
+    $(window).on('scroll', function newClassBar() {
+        if ($(window).scrollTop()) {
+            navBar.addClass('black');
+
+        } else {
+            navBar.removeClass('black');
+
+
+
+        }
+    });
+
+
+});

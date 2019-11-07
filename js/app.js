@@ -100,7 +100,7 @@ function buscarCantante(cantante) {
                     listadoBusqueda.insertAdjacentHTML('beforeend', cabeceraPista);
 
 
-                    let DatosArtista = []
+                    var DatosArtista = []
                     for (let g = 0; g < json.length; g++) {
                         var infoPista = {}
 
@@ -128,12 +128,14 @@ function buscarCantante(cantante) {
                     for (let m = 0; m < DatosArtista.length; m++) {
                         let pistaHTML = `
                         <div class="pista" id="${DatosArtista[m].id}" draggable="true" ondragstart="drag(event)" onclick="reproducirPista(this)">
-                            <img class="imagen-pista" src="${DatosArtista[m].imagen}" alt="No funciona la imagen">
+                        <img class="imagen-pista" src="${DatosArtista[m].imagen}" alt="No funciona la imagen">
                             <div class="titulo-descripcion">
                                 <p class="titulo-pista">${DatosArtista[m].title}</p>
                                 <p class="artista-pista">${DatosArtista[m].artist}</p>
                             </div>
+                            
                         </div>
+                        
                  `;
 
                         listadoBusqueda.insertAdjacentHTML('beforeend', pistaHTML)
@@ -154,7 +156,7 @@ function buscarCantante(cantante) {
                             </div>
                         </div>
                         `;
-                        const barraLateral = document.getElementById('listado-relacionado-barra-lateral')
+                        const barraLateral = document.getElementById('arrastrar-aqui')
                         barraLateral.insertAdjacentHTML('beforeend', soloPistaHTML)
                     } */
 
@@ -172,12 +174,12 @@ function drop(ev) {
     ev.preventDefault();
     let data = ev.dataTransfer.getData("text");
     let dataDnD = ev.target.appendChild(document.getElementById(data));
-    dataDnD.cloneNode(true);
     ev.dataTransfer.clearData();
-    /* let pistaArrastrar = document.getElementsByClassName('drag-and-drop-remove');
-    while (pistaArrastrar.hasChildNodes()) {
-        pistaArrastrar.removeChild(pistaArrastrar.firstChild)
-    } */
+    const arrastrarAqui = document.getElementById('arrastrar-aqui');
+    let eliminarTitulo = document.getElementsByTagName('h2')[0];
+
+    document.getElementById(`${data}`).className = 'enLista';
+    arrastrarAqui.removeChild(eliminarTitulo)
 
 }
 

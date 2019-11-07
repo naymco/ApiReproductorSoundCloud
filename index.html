@@ -30,13 +30,16 @@
                 <p>Texto para comprobar que esta zona existe</p>
             </a>
         </section>
-        <section class="barra-lateral" id="listado-relacionado-barra-lateral" ondragover="dragOver(event)" ondrop="drop(event)">
+        <section class="barra-lateral" id="listado-relacionado-barra-lateral" ondragover="dragOver(event)"
+            ondrop="drop(event)">
             <div class="reproductor">
                 <audio class=" reproductor-musica" controls="controls" autoplay="" src="">
                     <source src=" track.ogg" type="audio/ogg" />
                     <source src="track.mp3" type="audio/mpeg" />
                 </audio>
-
+                <div class="arrastrar-aqui" id="arrastrar-aqui">
+                    <h2>Arrastra tu canción aquí</h2>
+                </div>
             </div>
         </section>
     </div>
@@ -47,12 +50,7 @@
         </div>
     </footer>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-
-
     <script src="js/efects.js"></script>
-    <!--  <script src="js/dragAndDrop.js"></script> -->
-
     <script src="js/app.js"></script>
 </body>
 

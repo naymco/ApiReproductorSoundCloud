@@ -5,25 +5,22 @@ $(document).ready(function () {
     const efectoScrollSuave = $('.btn-buscar');
 
     efectoScrollSuave.click(function (e) {
-        // e.preventDefault();
         const anclaListado = '#' + $(this).data('listado');
         $("html,body").animate({
             scrollTop: $(anclaListado).offset().top
         }, 1000);
         $("footer").css("display", "block").animate(1000);
-        //Since our CSS is going to monkey with the height as you scroll, I need= $sidebar.height();
     })
 
     var $sidebar = $('.barra-lateral'),
         $content = $('.contenedor-principal');
 
-    //Since our CSS is going to monkey with the height as you scroll, I need to know the initial height.
     var sidebarHeight = $sidebar.height();
 
     if ($sidebar.length > 0 && $content.length > 0) {
         var $window = $(window),
-            offset = $sidebar.offset(),
-            timer;
+            offset = $sidebar.offset()
+
 
         $window.scroll(function () {
 
@@ -48,21 +45,16 @@ $(document).ready(function () {
         }
     });
 
-   
+
+    $(document).ready(function () {
+        $('.cambio-color').change(function () {
+            $('nav, #listado-relacionado-barra-lateral').css('background', $(this).val());
+            /* $('.fixed').css('background-color', $(this).val());
+            $('.caratula-disco:hover').css('background-color', $(this).val());
+            $('.pista:hover').css('background-color', $(this).val()); */
 
 
+        });
+    });
 
-    /* function borrarCancion(node) {
-        node.on('mousedown', function (ev) {
-            const clickDerecho = ev.button === 2;
-            const cancionEnLista = $('.enLista');
-            if (clickDerecho) {
-                if (
-                    confirm('¿estás seguro que quieres eliminar la canción?')
-                ) {
-                    $(cancionEnLista).remove();
-                }
-            }
-        })
-    } */
-})
+});

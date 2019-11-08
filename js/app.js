@@ -12,16 +12,11 @@ function reproducirPista(pistaActual) {
     audio.src = ` ${pistaActual.id}?client_id=${claveId}`;
     audio.autoplay = true;
 
-
-    /* while (listadoBusqueda.hasChildNodes()) {
-        listadoBusqueda.removeChild(listadoBusqueda.firstChild)
-    } */
     let copiaPista = pistaActual.cloneNode(true)
     listadoBusqueda.appendChild(copiaPista);
 }
 
 formBuscar.addEventListener('submit', function (e) { // evento que escuchará el submit del formulario
-    /* e.defaultPrevented(); */
     var buscar = inputBusqueda.value // capturo el valor del input
     console.log(buscar)
     buscarCantante(buscar); // envio la informacion del input a la funcion que hace la busqueda
@@ -140,25 +135,7 @@ function buscarCantante(cantante) {
 
                         listadoBusqueda.insertAdjacentHTML('beforeend', pistaHTML)
 
-
-
-
-
-
                     }
-                    /* for (let p = 0; p < 1; p++) {
-                        let soloPistaHTML = `
-                        <div class="solo-pista" id="${DatosArtista[p].id}" draggable="true" ondragstart="drag(event)" onclick="reproducirPista(this)">
-                            <img class="solo-imagen-pista" src="${DatosArtista[p].imagen}" alt="No funciona la imagen">
-                            <div class="titulo-descripcion">
-                                <p class="titulo-pista">${DatosArtista[p].title}</p>
-                                <p class="artista-pista">${DatosArtista[p].artist}</p>
-                            </div>
-                        </div>
-                        `;
-                        const barraLateral = document.getElementById('arrastrar-aqui')
-                        barraLateral.insertAdjacentHTML('beforeend', soloPistaHTML)
-                    } */
 
                 }
             });

@@ -49,9 +49,10 @@ $(document).ready(function () {
     $(document).ready(function () {
         $('.cambio-color').change(function () {
             $('nav, #listado-relacionado-barra-lateral').css('background', $(this).val());
-            /* $('.fixed').css('background-color', $(this).val());
-            $('.caratula-disco:hover').css('background-color', $(this).val());
-            $('.pista:hover').css('background-color', $(this).val()); */
+            $('span').css('color', $(this).val());
+            /*
+                        $('.caratula-disco:hover').css('background-color', $(this).val());
+                        $('.pista:hover').css('background-color', $(this).val()); */
 
 
         });

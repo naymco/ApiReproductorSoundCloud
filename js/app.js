@@ -7,17 +7,17 @@ const cabeceraCaratula = document.getElementById('cabecera-caratula');
 const listadoBusqueda = document.getElementById('listado-busqueda');
 const audio = document.querySelector('.reproductor-musica');
 
-function reproducirPista(pistaActual) {
+function reproducirPista(pistaActual) { // con esta funcion creo el src del audio para ejecutarlo al darle al play
     console.log(pistaActual.id);
     audio.src = ` ${pistaActual.id}?client_id=${claveId}`;
     audio.autoplay = true;
 
-    let copiaPista = pistaActual.cloneNode(true)
-    listadoBusqueda.appendChild(copiaPista);
+    /* let copiaPista = pistaActual.cloneNode(true)
+    listadoBusqueda.appendChild(copiaPista); */
 }
 
 formBuscar.addEventListener('submit', function (e) { // evento que escuchará el submit del formulario
-    var buscar = inputBusqueda.value // capturo el valor del input
+    let buscar = inputBusqueda.value // capturo el valor del input
     console.log(buscar)
     buscarCantante(buscar); // envio la informacion del input a la funcion que hace la busqueda
 })
@@ -52,12 +52,9 @@ function buscarCantante(cantante) {
                 </div>
             `;
                 listadoBusqueda.insertAdjacentHTML('beforeend', infoArtistHTML)
-
             }
-
-
         })
-        .then(function () {
+        .then(function () { // Con esta funcion obtengo las caratulas de los artistas y obtengo su id
             const caratulaDisco = document.querySelectorAll('.caratula-disco');
             for (let e = 0; e < caratulaDisco.length; e++) {
                 let artista = caratulaDisco[e].id
@@ -68,7 +65,7 @@ function buscarCantante(cantante) {
             }
         });
 
-    function subirCanciones(selecCantante) {
+    function subirCanciones(selecCantante) { //con esta funcion obtengo la información de soundcloud y me retorna la info en formato json
         fetch(`https://api.soundcloud.com/users/${selecCantante}/tracks/?client_id=${claveId}&limit=100`)
             .then(function (response) {
                 return response.json()
@@ -76,27 +73,26 @@ function buscarCantante(cantante) {
             .then(function (json) {
                 console.log(json)
 
-                while (listadoBusqueda.hasChildNodes()) {
+                while (listadoBusqueda.hasChildNodes()) { //bucle que limpia el contenido al hacer búsquedas
                     listadoBusqueda.removeChild(listadoBusqueda.firstChild)
                 }
                 if (json.length === 0) { // condicion para verificar que el disco contiene canciones
                     console.log('failure');
-                    let errorCabecera =
-                        `<h3 id="failHeading">Oops! Unfortunately, the artist you selected does not provide any free tracks for streaming. Please search again.</h3>
-            `;
+                    let errorCabecera = // en caso de haber un error informará de ello al usuario
+                        `<h3 id="failHeading">Oops! Unfortunately, the artist you selected does not provide any free tracks for streaming. Please search again.</h3>`;
                     listadoBusqueda.insertAdjacentHTML('beforeend', errorCabecera)
                 } else {
-                    console.log('success')
+                    /* console.log('success')
                     cabeceraPista = `
                     <div class="barra-ordenada">
                          <h3 class="titulo-ordenado"></h3>
                     </div>
                     `;
-                    listadoBusqueda.insertAdjacentHTML('beforeend', cabeceraPista);
+                    listadoBusqueda.insertAdjacentHTML('beforeend', cabeceraPista); */
 
 
-                    var DatosArtista = []
-                    for (let g = 0; g < json.length; g++) {
+                    var DatosArtista = [] // Array donde le haré push a los objetos de la búsqueda, obteniendo los datos que necesito
+                    for (let g = 0; g < json.length; g++) { // Bucle para encontrar los objetos dentro de la Array
                         var infoPista = {}
 
                         infoPista.id = json[g].stream_url
@@ -106,7 +102,7 @@ function buscarCantante(cantante) {
                         DatosArtista.push(infoPista)
                     }
 
-                    DatosArtista.sort((x, y) => {
+                    DatosArtista.sort((x, y) => { // Ordeno alfabéticamente las camciones
                         a = x.title.toUpperCase()
                         b = y.title.toUpperCase()
 
@@ -120,7 +116,7 @@ function buscarCantante(cantante) {
                         }
                     });
                     console.log(DatosArtista)
-                    for (let m = 0; m < DatosArtista.length; m++) {
+                    for (let m = 0; m < DatosArtista.length; m++) { // Bucle para obtener datos de la pista y pintarla en pantalla
                         let pistaHTML = `
                         <div class="pista" id="${DatosArtista[m].id}" draggable="true" ondragstart="drag(event)" onclick="reproducirPista(this)">
                         <img class="imagen-pista" src="${DatosArtista[m].imagen}" alt="No funciona la imagen">
@@ -150,10 +146,10 @@ function drag(ev) {
 function drop(ev) {
     ev.preventDefault();
     let data = ev.dataTransfer.getData("text");
-    let dataDnD = ev.target.appendChild(document.getElementById(data));
+    ev.target.appendChild(document.getElementById(data));
     ev.dataTransfer.clearData();
     const arrastrarAqui = document.getElementById('arrastrar-aqui');
-    let eliminarTitulo = document.getElementsByTagName('h2')[0];
+    let eliminarTitulo = document.getElementsByTagName('h2')[1];
 
     document.getElementById(`${data}`).className = 'enLista';
     arrastrarAqui.removeChild(eliminarTitulo)

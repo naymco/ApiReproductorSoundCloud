@@ -12,8 +12,6 @@ function reproducirPista(pistaActual) { // con esta funcion creo el src del audi
     audio.src = ` ${pistaActual.id}?client_id=${claveId}`;
     audio.autoplay = true;
 
-    /* let copiaPista = pistaActual.cloneNode(true)
-    listadoBusqueda.appendChild(copiaPista); */
 }
 
 formBuscar.addEventListener('submit', function (e) { // evento que escuchará el submit del formulario
@@ -82,14 +80,6 @@ function buscarCantante(cantante) {
                         `<h3 id="failHeading">Oops! Unfortunately, the artist you selected does not provide any free tracks for streaming. Please search again.</h3>`;
                     listadoBusqueda.insertAdjacentHTML('beforeend', errorCabecera)
                 } else {
-                    /* console.log('success')
-                    cabeceraPista = `
-                    <div class="barra-ordenada">
-                         <h3 class="titulo-ordenado"></h3>
-                    </div>
-                    `;
-                    listadoBusqueda.insertAdjacentHTML('beforeend', cabeceraPista); */
-
 
                     var DatosArtista = [] // Array donde le haré push a los objetos de la búsqueda, obteniendo los datos que necesito
                     for (let g = 0; g < json.length; g++) { // Bucle para encontrar los objetos dentro de la Array

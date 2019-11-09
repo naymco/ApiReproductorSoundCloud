@@ -62,7 +62,6 @@ nav {
 }
 
 .colores {
-    /* background: #a7a7a7; */
     display: flex;
     margin: auto;
     align-items: center;
@@ -70,10 +69,6 @@ nav {
     padding: 0 5px;
     font-weight: 700;
     height: 40px;
-    /* border-radius: 5px; */
-    /* box-shadow: 1px 1px 5px 0px rgba(0, 0, 0, 0.75); */
-
-
 }
 
 .icono-brush {
@@ -86,11 +81,6 @@ nav {
     border-radius: 50%;
     box-shadow: 1px 1px 3px 0px rgba(0, 0, 0, 0.55);
 }
-
-/* input[type="color"] {
-    background: #303030;
-    border-radius: 100%;
-} */
 
 #boton-buscador {
     border-radius: 0 50px 50px 0;

@@ -8,6 +8,11 @@ que puedes escuchar mientras sigues navegando y buscando otros artistas.
 
 ######################
 
+## Screenshots
+![](img/soundCloud_principal.jpg)
+![](img/soundCloud_seleccion_color.jpg)
+![](img/soundCloud_vista_drag_and_drop.jpg)
+
 Todo el proyecto se presenta en una sola hoja de HTML, y utilicé Javascript, también usé diferentes tipos de efectos
 visuales en JQuery que creí que se verían bien además de agregarle más funcionalidad.
 

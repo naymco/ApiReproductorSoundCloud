@@ -9,8 +9,13 @@ que puedes escuchar mientras sigues navegando y buscando otros artistas.
 ######################
 
 ## Screenshots
+Pantalla principal
 ![](img/soundCloud_principal.jpg)
+
+Selección de color de la aplicación personalizado
 ![](img/soundCloud_seleccion_color.jpg)
+
+Vista del drag and drop de las canciones
 ![](img/soundCloud_vista_drag_and_drop.jpg)
 
 Todo el proyecto se presenta en una sola hoja de HTML, y utilicé Javascript, también usé diferentes tipos de efectos

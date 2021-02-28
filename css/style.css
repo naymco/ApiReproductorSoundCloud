@@ -212,7 +212,7 @@ nav {
 }
 
 .caratula-disco h3 {
-    font-family: "Montserrat"sans-serif;
+    font-family: "Montserrat" sans-serif;
     font-weight: 700;
     font-size: 15px;
     padding: 5px;
@@ -237,6 +237,7 @@ nav {
     border-radius: 10px;
     color: #ffffff;
     font-family: "Montserrat"sans-serif;
+    overflow: overlay;
 }
 
 .arrastrar-aqui h2 {
@@ -307,6 +308,9 @@ nav {
 }
 
 .enLista {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     background: #585858;
     width: 80%;
     height: 50px;
@@ -318,6 +322,7 @@ nav {
     padding-top: 5px;
     border-radius: 5px;
     align-items: center;
+    z-index: 0;
 }
 
 .enLista img {
@@ -329,6 +334,7 @@ nav {
 }
 
 .enLista p {
+    width: 150px;
     font-size: 13px;
     font-family: "Montserrat"sans-serif;
     margin: auto;
@@ -339,3 +345,30 @@ nav {
 .enLista:hover {
     background: #494949;
 }
+
+.handle-song{
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+}
+
+.button-delete-style {
+    padding: 10px;
+    margin: 5px;
+    background: #c31717;
+    border-radius: 50%;
+    z-index: 1;
+    cursor: pointer;
+
+}
+.button-play-style {
+    padding: 10px;
+    margin: 5px;
+    background: #45c317;
+    border-radius: 50%;
+    z-index: 1;
+    cursor: pointer;
+
+}
+
+

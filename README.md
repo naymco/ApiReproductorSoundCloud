@@ -3,6 +3,9 @@ Reproductor de SoundCloud para el proyecto de GeeksHubs.
 
 ######################
 
+# NUEVA VERSIÓN: 1.2.0;
+
+#####################
 Aplicación con un reproductor de música. Obtuve la información de la api de SoundCloud y creé un buscador de canciones
 que puedes escuchar mientras sigues navegando y buscando otros artistas. 
 

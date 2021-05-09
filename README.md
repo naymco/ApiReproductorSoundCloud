@@ -4,7 +4,7 @@ Reproductor de SoundCloud para el proyecto de GeeksHubs.
 ######################
 
 # NUEVA VERSIÓN: 1.2.0;
-naymco.github.io/ApiReproductorSoundCloud/
+[Visita la nueva versión] (naymco.github.io/ApiReproductorSoundCloud/)
 
 #####################
 Aplicación con un reproductor de música. Obtuve la información de la api de SoundCloud y creé un buscador de canciones
